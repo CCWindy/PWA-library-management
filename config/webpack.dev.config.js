@@ -7,10 +7,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const common = require("./webpack.common.config");
 
 module.exports = merge(common, {
-  mode: 'development',
+  mode: "development",
   output: {
-    filename: 'js/[name].[hash:8].bundle.js',
+    filename: "js/[name].[hash:8].bundle.js"
   },
+  devtool: "cheap-module-source-map",
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     open: true,
@@ -20,11 +21,10 @@ module.exports = merge(common, {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'public/index.html',
-      inject: 'body',
+      template: "public/index.html",
+      inject: "body",
       hash: false
     }),
     new webpack.HotModuleReplacementPlugin()
   ]
 });
-

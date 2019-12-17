@@ -2,10 +2,20 @@ import React from "react";
 
 import "./app.css";
 
+import image from "./images/image.png";
+
 function App() {
   return (
     <div className="app">
-      <h1>Hey React</h1>
+      <div>
+        <h1>Hey React</h1>
+      </div>
+      <div className="image-container">
+        <img src={image} />
+        <img src={image} />
+        <img src={image} />
+        <img src={image} />
+      </div>
     </div>
   );
 }

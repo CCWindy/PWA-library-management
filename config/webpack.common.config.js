@@ -23,6 +23,15 @@ module.exports = {
       {
         test: /\.sass$/,
         use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
+      },
+      {
+        test: /\.(png|gif|jpg|svg|ico)$/,
+        exclude: /(node_modules)/,
+        loader: "url-loader"
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        loader: "url-loader"
       }
     ]
   }
