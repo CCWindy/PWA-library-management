@@ -2,7 +2,7 @@ import React from "react";
 
 import "./app.css";
 
-import image from "./images/image.png";
+import image from "./assets/images/image.png";
 
 function App() {
   return (

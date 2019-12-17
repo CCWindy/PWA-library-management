@@ -1,5 +1,7 @@
 const path = require("path");
 
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 module.exports = {
   entry: {
     index: "./src/index.js",
@@ -34,5 +36,6 @@ module.exports = {
         loader: "url-loader"
       }
     ]
-  }
+  },
+  plugins: [new CopyWebpackPlugin([{ from: "public" }])]
 };
