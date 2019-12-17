@@ -1,7 +1,13 @@
 import React from "react";
 
+import "./app.css";
+
 function App() {
-  return <div>Hey React</div>;
+  return (
+    <div className="app">
+      <h1>Hey React</h1>
+    </div>
+  );
 }
 
 export default App;

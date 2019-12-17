@@ -1,0 +1,12 @@
+.app {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+}
+
+h1 {
+  font-size: 32px;
+  color: #fff;
+}
