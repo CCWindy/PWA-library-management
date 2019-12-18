@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    index: "./src/index.js",
+    index: "./src/index.tsx",
     framework: ["react", "react-dom"]
   },
   output: {
@@ -14,7 +14,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx|js|jsx)$/,
         use: "babel-loader",
         exclude: /node_modules/
       },
@@ -36,6 +36,9 @@ module.exports = {
         loader: "url-loader"
       }
     ]
+  },
+  resolve: {
+    extensions: [ ".ts", ".tsx", ".js", ".jsx"]
   },
   plugins: [new CopyWebpackPlugin([{ from: "public" }])]
 };
