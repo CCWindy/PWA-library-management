@@ -9,7 +9,7 @@ const common = require('./webpack.common.config');
 module.exports = merge(common, {
   mode: 'development',
   output: {
-    filename: 'js/[name].[hash:8].bundle.js',
+    filename: 'js/[name].bundle.js',
   },
   devtool: 'cheap-module-source-map',
   devServer: {
