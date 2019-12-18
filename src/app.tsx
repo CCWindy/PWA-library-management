@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import "./app.css";
+import './app.css';
 
-import image from "./assets/images/image.png";
+import image from './assets/images/image.png';
 
 function App() {
   return (
