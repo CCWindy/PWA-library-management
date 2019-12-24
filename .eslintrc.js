@@ -9,6 +9,7 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+    workbox: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {

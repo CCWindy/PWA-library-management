@@ -1,6 +1,7 @@
 const path = require('path');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -40,5 +41,10 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
-  plugins: [new CopyWebpackPlugin([{ from: 'public' }])],
+  plugins: [
+    new InjectManifest({
+      swSrc: './public/sw.js',
+    }),
+    new CopyWebpackPlugin([{ from: 'public' }]),
+  ],
 };
