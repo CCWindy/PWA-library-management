@@ -1,10 +1,22 @@
-const CACHE_NAME = 'CACHE_NAME_';
 const VERSION = 'V1';
-const OFFLINE_CACHE_NAME = CACHE_NAME + VERSION;
+
+// customized cache name
+const CACHE_NAME = 'CACHE_NAME_';
+const CUSTOMIZED_CACHE_NAME = CACHE_NAME + VERSION;
+
+// workbox cache name
+const WORKBOX = 'WORKBOX';
+const RUNTIME = 'RUNTIME';
+const PRECACHE = 'PRECACHE';
+const WROKBOX_RUNTIME_CACHE_NAME = `${WORKBOX}-${RUNTIME}-${VERSION}`;
+const WROKBOX_PRECACHE_CACHE_NAME = `${WORKBOX}-${PRECACHE}-${VERSION}`;
 
 const whiteListVersion = ['V1'];
-const whiteListCacheName = whiteListVersion.map(version => {
-  return CACHE_NAME + version;
+const whiteListCacheName = [];
+whiteListVersion.map(version => {
+  whiteListCacheName.push(CACHE_NAME + version);
+  whiteListCacheName.push(`${WORKBOX}-${RUNTIME}-${version}`);
+  whiteListCacheName.push(`${WORKBOX}-${PRECACHE}-${version}`);
 });
 
 const urlsToCache = [
@@ -22,10 +34,10 @@ const urlsToCache = [
 if (workbox) {
   // 修改默认配置
   workbox.core.setCacheNameDetails({
-    prefix: 'workbox',
-    suffix: 'v1',
-    precache: 'precache',
-    runtime: 'runtime',
+    prefix: WORKBOX,
+    suffix: VERSION,
+    precache: PRECACHE,
+    runtime: RUNTIME,
   });
 
   workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
@@ -35,25 +47,25 @@ if (workbox) {
 
 this.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(OFFLINE_CACHE_NAME).then(function(cache) {
+    caches.open(CUSTOMIZED_CACHE_NAME).then(function(cache) {
       return cache.addAll(urlsToCache);
     })
   );
 });
 
-// this.addEventListener('activate', function(event) {
-//   event.waitUntil(
-//     caches.keys().then(function(keyList) {
-//       return Promise.all(
-//         keyList.map(function(key) {
-//           if (whiteListCacheName.indexOf(key) === -1) {
-//             return caches.delete(key);
-//           }
-//         })
-//       );
-//     })
-//   );
-// });
+this.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(keyList) {
+      return Promise.all(
+        keyList.map(function(key) {
+          if (whiteListCacheName.indexOf(key) === -1) {
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
+});
 
 this.addEventListener('fetch', function(event) {
   console.log(event.request);
