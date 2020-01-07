@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { Home } from './pages/home/index';
-import { Detail } from './pages/detail/index';
+const Home = lazy(() => import(/* webpackChunkName: "home" */ './pages/home/home'));
+const Detail = lazy(() => import(/* webpackChunkName: "detail" */ './pages/detail/detail'));
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/home">
-          <Home />
-        </Route>
-        <Route path="/detail">
-          <Detail />
-        </Route>
-        <Route extra path="/">
-          <Home />
-        </Route>
-      </Switch>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/detail">
+            <Detail />
+          </Route>
+          <Route extra path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Suspense>
     </Router>
   );
 }

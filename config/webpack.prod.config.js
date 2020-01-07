@@ -9,7 +9,7 @@ const common = require('./webpack.common.config');
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    filename: 'js/[name].[chunkhash:8].bundle.js',
+    filename: 'js/[name].[hash].bundle.js',
   },
   optimization: {
     minimize: true,
