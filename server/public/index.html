@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PWA-library-mgnt</title><link rel="icon" href="./icons/icon_144x144.png"><link rel="manifest" href="./manifest.json"></head><body><script>// 判断浏览器是否支持 Service Worker
+      if ('serviceWorker' in navigator) {
+        // 在 load 事件触发后注册 Service Worker，确保 Service Worker 的注册不会影响首屏速度
+        window.addEventListener('load', function() {
+          // 注册 Service Worker
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then(function(registration) {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(function(err) {
+              console.warn('ServiceWorker registration failed: ', err);
+            });
+        });
+      }</script><div id="root"></div><script type="text/javascript" src="js/framework.295c75ae8a27616f3a18.bundle.js"></script><script type="text/javascript" src="js/vendor.295c75ae8a27616f3a18.bundle.js"></script><script type="text/javascript" src="js/index.295c75ae8a27616f3a18.bundle.js"></script></body></html>
