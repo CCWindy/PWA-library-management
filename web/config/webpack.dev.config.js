@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const common = require('./webpack.common.config');
 
@@ -21,6 +22,7 @@ module.exports = merge(common, {
     hot: true,
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       inject: 'body',

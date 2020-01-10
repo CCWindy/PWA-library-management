@@ -42,6 +42,7 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   plugins: [
+    new WebpackBar(),
     new InjectManifest({
       swSrc: './public/sw.js',
     }),

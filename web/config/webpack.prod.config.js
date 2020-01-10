@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 
+const WebpackBar = require('webpackbar');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
