@@ -7,7 +7,14 @@ const Detail = lazy(() => import(/* webpackChunkName: "detail" */ './pages/detai
 function App() {
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="spinner">
+            <div className="bounce1"></div>
+            <div className="bounce2"></div>
+          </div>
+        }
+      >
         <Switch>
           <Route path="/home">
             <Home />
