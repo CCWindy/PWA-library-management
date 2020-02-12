@@ -4,8 +4,8 @@
   "description": "Library management system, a progressive web app developed by React.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./config/webpack.dev.config.js",
-    "build": "webpack --config ./config/webpack.prod.config.js",
+    "start": "set NODE_ENV=dev && webpack-dev-server --config ./config/webpack.dev.config.js",
+    "build": "set NODE_ENV=prod && webpack --config ./config/webpack.prod.config.js",
     "lint": "eslint **/*.{ts,tsx,js,jsx}",
     "lint:fix": "eslint **/*.{ts,tsx,js,jsx} --fix"
   },

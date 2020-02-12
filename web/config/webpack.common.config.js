@@ -1,5 +1,6 @@
 const path = require('path');
 
+const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
@@ -44,6 +45,9 @@ module.exports = {
   },
   plugins: [
     new WebpackBar(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    }),
     new InjectManifest({
       swSrc: './public/sw.js',
     }),
