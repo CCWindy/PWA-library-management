@@ -1,10 +1,26 @@
 var createError = require('http-errors');
 var express = require('express');
+var webpush = require('web-push');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var booksRouter = require('./routes/books');
+var pushRouter = require('./routes/push');
+var subscribeRouter = require('./routes/subscribe');
+
+const vapidKeys = {
+  publicKey: 'BOEQSjdhorIf8M0XFNlwohK3sTzO9iJwvbYU-fuXRF0tvRpPPMGO6d_gJC_pUQwBT7wD8rKutpNTFHOHN3VqJ0A',
+  privateKey: 'TVe_nJlciDOn130gFyFYP8UiGxxWd3QdH6C5axXpSgM',
+};
+
+// 设置web-push的VAPID值
+webpush.setVapidDetails(
+  // 'mailto:yan.y.wu@ericsson.com',
+  'mailto:alienzhou16@163.com',
+  vapidKeys.publicKey,
+  vapidKeys.privateKey
+);
 
 var app = express();
 
@@ -24,6 +40,8 @@ app.use(function(req, res, next) {
 });
 
 app.use('/books', booksRouter);
+app.use('/push', pushRouter);
+app.use('/subscribe', subscribeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
