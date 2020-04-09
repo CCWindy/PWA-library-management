@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './app';
-import * as serviceWorker from './serviceWorker';
-
 import './index.scss';
+import * as serviceWorker from './serviceWorker';
+serviceWorker.register();
 
 if (process.env.NODE_ENV === 'prod') {
-  serviceWorker.registerWs();
+  serviceWorker.register();
 } else {
-  serviceWorker.unregisterWs();
+  serviceWorker.unregister();
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
