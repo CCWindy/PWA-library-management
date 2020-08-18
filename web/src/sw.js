@@ -78,21 +78,19 @@ this.addEventListener('fetch', function (event) {
 
 this.addEventListener('notificationclick', function (e) {
   const action = e.action;
-  console.log(`action tag: ${e.notification.tag}`, `action: ${action}`);
+  // console.log(`action tag: ${e.notification.tag}`, `action: ${action}`);
 
-  switch (action) {
-    case 'show-book':
-      console.log('show-book');
-      // location.href = 'https://127.0.0.1:9000';
-      break;
-    case 'contact-me':
-      // location.href = 'yan.y.wu@ericsson.com';
-      break;
-    default:
-      console.log(`Unhandled action: ${e.action}`);
-      action = 'default';
-      break;
-  }
+  // switch (action) {
+  //   case 'show-book':
+  //     console.log('show-book');
+  //     // location.href = 'https://127.0.0.1:9000';
+  //     break;
+  //   case 'contact-me':
+  //     break;
+  //   default:
+  //     console.log(`Unhandled action: ${e.action}`);
+  //     break;
+  // }
 
   e.notification.close();
 

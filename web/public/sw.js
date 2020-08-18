@@ -86,7 +86,6 @@ this.addEventListener('notificationclick', function (e) {
       // location.href = 'https://127.0.0.1:9000';
       break;
     case 'contact-me':
-      // location.href = 'yan.y.wu@ericsson.com';
       break;
     default:
       console.log(`Unhandled action: ${e.action}`);

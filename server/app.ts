@@ -15,12 +15,7 @@ const vapidKeys = {
 };
 
 // 设置web-push的VAPID值
-webpush.setVapidDetails(
-  // 'mailto:yan.y.wu@ericsson.com',
-  'mailto:alienzhou16@163.com',
-  vapidKeys.publicKey,
-  vapidKeys.privateKey
-);
+webpush.setVapidDetails('mailto:alienzhou16@163.com', vapidKeys.publicKey, vapidKeys.privateKey);
 
 var app = express();
 

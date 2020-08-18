@@ -4,7 +4,7 @@ import axios from 'axios';
 export const register = () => {
   if ('serviceWorker' in navigator) {
     // 在 load 事件触发后注册 Service Worker，确保 Service Worker 的注册不会影响首屏速度
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
       // 注册 Service Worker
       registerServiceWorker('./sw.js')
         .then(registration => {
@@ -15,14 +15,16 @@ export const register = () => {
 
           if ('PushManager' in window) {
             subscribeUserToPush(registration).then(subscription => {
-              console.log(subscription, 'subscription');
-              axios.post('http://localhost:3000/subscribe', { subscription, client: 'library' }).then(data => {
-                console.log(data);
-              });
+              axios.post(
+                'http://localhost:3000/subscribe',
+                { subscription, client: 'library' })
+                .then(data => {
+                  console.log(data);
+                });
             });
           }
         })
-        .catch(function(err) {
+        .catch(function (err) {
           console.warn('ServiceWorker registration failed: ', err);
         });
     });
@@ -42,8 +44,8 @@ function registerServiceWorker(file) {
 }
 
 const askPermission = () => {
-  return new Promise(function(resolve, reject) {
-    const permissionResult = Notification.requestPermission(function(result) {
+  return new Promise(function (resolve, reject) {
+    const permissionResult = Notification.requestPermission(function (result) {
       console.log(result, 'get permission');
 
       resolve(result);
@@ -52,7 +54,7 @@ const askPermission = () => {
     if (permissionResult) {
       permissionResult.then(resolve, reject);
     }
-  }).then(function(permissionResult) {
+  }).then(function (permissionResult) {
     if (permissionResult !== 'granted') {
       throw new Error("We weren't granted permission.");
     }
@@ -65,18 +67,14 @@ const subscribeUserToPush = registration => {
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(publicKey),
   };
-  registration.pushManager.getSubscription(data => {
-    console.log(data);
-  });
 
-  // await registration.pushManager.unsubscribe(subscribeOptions)
-  return registration.pushManager.subscribe(subscribeOptions).then(function(pushSubscription) {
+  return registration.pushManager.subscribe(subscribeOptions).then(function (pushSubscription) {
     console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
     return pushSubscription;
   });
 };
 
-navigator.serviceWorker.addEventListener('message', function(e) {
+navigator.serviceWorker.addEventListener('message', function (e) {
   const action = e.data;
   console.log(`receive post-message from sw, action is '${e.data}'`);
   switch (action) {
@@ -84,10 +82,10 @@ navigator.serviceWorker.addEventListener('message', function(e) {
       location.href = 'http://100.98.137.158:3000';
       break;
     case 'contact-me':
-      location.href = 'mailto:yan.y.wu@ericsson.com';
       break;
     default:
-      document.querySelector('.panel').classList.add('show');
+      console.log('nothing');
+
       break;
   }
 });

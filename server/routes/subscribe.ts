@@ -6,7 +6,7 @@ router.post('/', async (req, res) => {
   let subscription = req.body.subscription;
   let client = req.body.client;
 
-  const result = await Subscription.findOne({ client });
+  const result = await Subscription.findOneAndUpdate({ subscription, client });
 
   if (!result) {
     await new Subscription({ subscription, client }).save();
